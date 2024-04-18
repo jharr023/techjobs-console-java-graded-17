@@ -61,6 +61,10 @@ public class TechJobs {
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
 
+                //added for task 2:
+                ArrayList<HashMap<String, String>> searchResults = JobData.findByValue(searchTerm);
+                printJobs(searchResults);
+
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
@@ -119,7 +123,22 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) {
+            System.out.println("Search term:");
+            System.out.println("Example Search Term with No Results");
+            System.out.println("No Results");
+            return;
+        }
 
-        System.out.println("printJobs is not implemented yet");
+        for (HashMap<String, String> job : someJobs) {
+            System.out.println("*****");
+            System.out.println("position type: " + job.get("position type"));
+            System.out.println("name: " + job.get("name"));
+            System.out.println("employer: " + job.get("employer"));
+            System.out.println("location: " + job.get("location"));
+            System.out.println("core competency: " + job.get("core competency"));
+            System.out.println("*****");
+            System.out.println(); // Add a blank line between listings
+        }
     }
 }
