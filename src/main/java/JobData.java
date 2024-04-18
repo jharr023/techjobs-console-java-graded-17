@@ -90,8 +90,28 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
 
-        // TODO - implement this method
+        for (HashMap<String, String> job : allJobs) {
+            boolean found = false;
+            for (String column : job.keySet()) {
+                String columnValue = job.get(column);
+                if (columnValue.toLowerCase().contains(value.toLowerCase())) {
+                    if (!matchingJobs.contains(job)) { // Check for duplicate job entries
+                        matchingJobs.add(job);
+                    }
+                    found = true;
+                    break; // Once a job is found, no need to search further columns for this job
+                }
+            }
+            if (found) {
+                break; // Break outer loop if a job is found to avoid adding duplicates
+            }
+        }
+
+        return matchingJobs;
+    }
+       /* COMMENTED OUT TO ATTEMPT TO PASS RELEVANT TEST
         //return null;
         ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
         ArrayList<String> addedJobs = new ArrayList<>(); // To keep track of added jobs
@@ -115,7 +135,7 @@ public class JobData {
         }
 
         return matchingJobs;
-    }
+    } */
 
     private static void loadData() {
 
