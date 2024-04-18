@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.HashSet;
 
 /**
  * Created by LaunchCode
@@ -10,7 +11,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -116,13 +117,20 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
+
+
+    //commented out to attempt test 1
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+//added to pass?
+        HashSet<String> printedJobIdentifiers = new HashSet<>(); // Declare the HashSet here
+
+
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
@@ -131,14 +139,24 @@ public class TechJobs {
         }
 
         for (HashMap<String, String> job : someJobs) {
-            System.out.println("*****");
-            System.out.println("position type: " + job.get("position type"));
-            System.out.println("name: " + job.get("name"));
-            System.out.println("employer: " + job.get("employer"));
-            System.out.println("location: " + job.get("location"));
-            System.out.println("core competency: " + job.get("core competency"));
-            System.out.println("*****");
-            System.out.println(); // Add a blank line between listings
+            //next 2 lines added to pass
+            String jobIdentifier = generateJobIdentifier(job);
+            if (!printedJobIdentifiers.contains(jobIdentifier)) {
+
+                System.out.println("*****");
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                System.out.println("*****");
+                System.out.println(); // Add a blank line between listings
+            }
         }
+    }
+
+    private static String generateJobIdentifier(HashMap<String, String> job) {
+        // Generate a unique identifier for the job using name, employer, and location fields
+        return job.get("name") + job.get("employer") + job.get("location");
     }
 }
