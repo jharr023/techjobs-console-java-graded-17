@@ -92,16 +92,45 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+        HashSet<String> uniqueJobIdentifiers = new HashSet<>();
 
         for (HashMap<String, String> job : allJobs) {
-            if (jobContainsValue(job, value) && !matchingJobs.contains(job)) {
-                matchingJobs.add(job);
+            if (jobContainsValue(job, value)) {
+                String jobIdentifier = generateJobIdentifier(job);
+                if (!uniqueJobIdentifiers.contains(jobIdentifier)) {
+                    matchingJobs.add(job);
+                    uniqueJobIdentifiers.add(jobIdentifier);
+                }
             }
         }
 
         return matchingJobs;
     }
+    /*COMMENTED OUT TO ATTEMPT TO PASS RELEVANT TEST
+            //return null;
+            ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+            ArrayList<String> addedJobs = new ArrayList<>(); // To keep track of added jobs
 
+            for (HashMap<String, String> job : allJobs) {
+                boolean found = false;
+                for (String column : job.keySet()) {
+                    String columnValue = job.get(column);
+                    if (columnValue.toLowerCase().contains(value.toLowerCase()) && !addedJobs.contains(columnValue)) {
+                        matchingJobs.add(job);
+                        addedJobs.add(columnValue);
+                        found = true;
+                        break; // Once a job is added, no need to search further columns for this job
+                    }
+                }
+                //if (!found) {
+                    //addedJobs.add(""); // Adding an empty string to ensure uniqueness even if no job is found
+                if (found) {
+                    break; // Break outer loop if a job is found to avoid adding duplicates
+                }
+            }
+
+            return matchingJobs;
+        }*/
     private static boolean jobContainsValue(HashMap<String, String> job, String value) {
         for (String column : job.values()) {
             if (column.toLowerCase().contains(value.toLowerCase())) {
@@ -110,31 +139,12 @@ public class JobData {
         }
         return false;
     }
-       /* COMMENTED OUT TO ATTEMPT TO PASS RELEVANT TEST
-        //return null;
-        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
-        ArrayList<String> addedJobs = new ArrayList<>(); // To keep track of added jobs
 
-        for (HashMap<String, String> job : allJobs) {
-            boolean found = false;
-            for (String column : job.keySet()) {
-                String columnValue = job.get(column);
-                if (columnValue.toLowerCase().contains(value.toLowerCase()) && !addedJobs.contains(columnValue)) {
-                    matchingJobs.add(job);
-                    addedJobs.add(columnValue);
-                    found = true;
-                    break; // Once a job is added, no need to search further columns for this job
-                }
-            }
-            //if (!found) {
-                //addedJobs.add(""); // Adding an empty string to ensure uniqueness even if no job is found
-            if (found) {
-                break; // Break outer loop if a job is found to avoid adding duplicates
-            }
-        }
+    private static String generateJobIdentifier(HashMap<String, String> job) {
+        // Generate a unique identifier for the job using name, employer, and location fields
+        return job.get("name") + job.get("employer") + job.get("location");
+    }
 
-        return matchingJobs;
-    } */
 
     private static void loadData() {
 
