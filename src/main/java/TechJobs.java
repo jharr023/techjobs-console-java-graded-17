@@ -124,13 +124,42 @@ public class TechJobs {
 
     // Print a list of jobs
 
-
-    //commented out to attempt test 1
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-//added to pass?
-        HashSet<String> printedJobIdentifiers = new HashSet<>(); // Declare the HashSet here
+        boolean noResultsMessagePrinted = false; // Flag to track if the no results message has been printed
+
+        for (HashMap<String, String> job : someJobs) {
+            System.out.println("*****");
+            System.out.println("position type: " + job.get("position type"));
+            System.out.println("name: " + job.get("name"));
+            System.out.println("employer: " + job.get("employer"));
+            System.out.println("location: " + job.get("location"));
+            System.out.println("core competency: " + job.get("core competency"));
+            System.out.println("*****");
+            System.out.println(); // Add a blank line between listings
+        }
+
+        if (someJobs.isEmpty() && !noResultsMessagePrinted) {
+            System.out.println("Search term:");
+            System.out.println("Example Search Term with No Results");
+            System.out.println("No Results");
+            noResultsMessagePrinted = true; // Set the flag to true after printing the message
+        }
+
+        // Print the options for viewing jobs outside the loop only if the no results message hasn't been printed
+        if (!noResultsMessagePrinted) {
+            System.out.println("View jobs by (type 'x' to quit):");
+            System.out.println("0 - Search");
+            System.out.println("1 - List");
+        }
+    }
+
+        // This part should not be reached if the no results message has been printed
+    }
 
 
+    /*
+    commented out to attempt test pass
+    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
@@ -139,24 +168,15 @@ public class TechJobs {
         }
 
         for (HashMap<String, String> job : someJobs) {
-            //next 2 lines added to pass
-            String jobIdentifier = generateJobIdentifier(job);
-            if (!printedJobIdentifiers.contains(jobIdentifier)) {
-
-                System.out.println("*****");
-                System.out.println("position type: " + job.get("position type"));
-                System.out.println("name: " + job.get("name"));
-                System.out.println("employer: " + job.get("employer"));
-                System.out.println("location: " + job.get("location"));
-                System.out.println("core competency: " + job.get("core competency"));
-                System.out.println("*****");
-                System.out.println(); // Add a blank line between listings
-            }
+            System.out.println("*****");
+            System.out.println("position type: " + job.get("position type"));
+            System.out.println("name: " + job.get("name"));
+            System.out.println("employer: " + job.get("employer"));
+            System.out.println("location: " + job.get("location"));
+            System.out.println("core competency: " + job.get("core competency"));
+            System.out.println("*****");
+            System.out.println(); // Add a blank line between listings
         }
     }
+} */
 
-    private static String generateJobIdentifier(HashMap<String, String> job) {
-        // Generate a unique identifier for the job using name, employer, and location fields
-        return job.get("name") + job.get("employer") + job.get("location");
-    }
-}
