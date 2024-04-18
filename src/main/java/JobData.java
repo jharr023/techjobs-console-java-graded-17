@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -110,8 +107,10 @@ public class JobData {
                     break; // Once a job is added, no need to search further columns for this job
                 }
             }
-            if (!found) {
-                addedJobs.add(""); // Adding an empty string to ensure uniqueness even if no job is found
+            //if (!found) {
+                //addedJobs.add(""); // Adding an empty string to ensure uniqueness even if no job is found
+            if (found) {
+                break; // Break outer loop if a job is found to avoid adding duplicates
             }
         }
 
