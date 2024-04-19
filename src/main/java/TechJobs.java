@@ -123,40 +123,34 @@ public class TechJobs {
     }
 
     // Print a list of jobs
+    private static boolean noResultsPrinted = false;
 
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        boolean jobsPrinted = false; // Flag to track if any jobs were printed
-
-        // Print jobs if there are any
-        for (HashMap<String, String> job : someJobs) {
-            System.out.println("*****");
-            System.out.println("position type: " + job.get("position type"));
-            System.out.println("name: " + job.get("name"));
-            System.out.println("employer: " + job.get("employer"));
-            System.out.println("location: " + job.get("location"));
-            System.out.println("core competency: " + job.get("core competency"));
-            System.out.println("*****");
-            System.out.println(); // Add a blank line between listings
-            jobsPrinted = true; // Set the flag to true after printing at least one job
-        }
-
-        // If no jobs were printed, print the no results message
-        if (!jobsPrinted) {
+        if (someJobs.isEmpty() && !noResultsPrinted) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
             System.out.println("No Results");
-        }
 
-        // Print the options for viewing jobs if there are jobs to display
-        if (jobsPrinted) {
-            System.out.println("View jobs by (type 'x' to quit):");
-            System.out.println("0 - Search");
-            System.out.println("1 - List");
+            // Set the flag to true to indicate that the message has been printed
+            noResultsPrinted = true;
+        } else {
+            // Print jobs
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println("*****");
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                System.out.println("*****");
+                System.out.println(); // Add a blank line between listings
+            }
         }
     }
 }
- /*   //commented out to attempt test pass
-    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+
+    //commented out to attempt test pass
+     /* private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
@@ -176,4 +170,3 @@ public class TechJobs {
         }
     }
 } */
-
