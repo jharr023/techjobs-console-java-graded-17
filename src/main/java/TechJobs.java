@@ -124,7 +124,35 @@ public class TechJobs {
 
     // Print a list of jobs
     private static boolean noResultsPrinted = false;
+    private static boolean searchResultsPrinted = false;
+    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) {
+            if (!noResultsPrinted) {
+                System.out.println("Search term:");
+                System.out.println("Example Search Term with No Results");
+                System.out.println("No Results");
+                noResultsPrinted = true;
+            }
+        } else {
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println("*****");
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                System.out.println("*****");
+            }
+            // Set flag to prevent printing search results again
+            searchResultsPrinted = true;
+        }
+        System.out.println(); // Add a blank line after printing jobs
+    }
 
+    // Rest of the class remains the same...
+}
+
+    /* ver2 commented out to test ver3
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty() && !noResultsPrinted) {
             System.out.println("Search term:");
@@ -147,9 +175,9 @@ public class TechJobs {
             }
         }
     }
-}
+}*/
 
-    //commented out to attempt test pass
+    //commented out to attempt test pass BASIC OG
      /* private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
