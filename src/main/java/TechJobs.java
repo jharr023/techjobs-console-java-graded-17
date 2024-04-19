@@ -140,7 +140,6 @@ public class TechJobs {
                 System.out.println("location: " + job.get("location"));
                 System.out.println("core competency: " + job.get("core competency"));
                 System.out.println("*****");
-                //System.out.println(); // Add a blank line between listings
             }
             // Set the flag to true to indicate that jobs have been printed
             jobsPrinted = true;
