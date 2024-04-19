@@ -125,8 +125,9 @@ public class TechJobs {
     // Print a list of jobs
 
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        boolean noResultsMessagePrinted = false; // Flag to track if the no results message has been printed
+        boolean jobsPrinted = false; // Flag to track if any jobs were printed
 
+        // Print jobs if there are any
         for (HashMap<String, String> job : someJobs) {
             System.out.println("*****");
             System.out.println("position type: " + job.get("position type"));
@@ -136,35 +137,31 @@ public class TechJobs {
             System.out.println("core competency: " + job.get("core competency"));
             System.out.println("*****");
             System.out.println(); // Add a blank line between listings
+            jobsPrinted = true; // Set the flag to true after printing at least one job
         }
 
-        if (someJobs.isEmpty() && !noResultsMessagePrinted) {
+        // If no jobs were printed, print the no results message
+        if (!jobsPrinted) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
             System.out.println("No Results");
-            noResultsMessagePrinted = true; // Set the flag to true after printing the message
         }
 
-        // Print the options for viewing jobs outside the loop only if the no results message hasn't been printed
-        if (!noResultsMessagePrinted) {
+        // Print the options for viewing jobs if there are jobs to display
+        if (jobsPrinted) {
             System.out.println("View jobs by (type 'x' to quit):");
             System.out.println("0 - Search");
             System.out.println("1 - List");
         }
     }
-
-        // This part should not be reached if the no results message has been printed
-    }
-
-
-    /*
-    commented out to attempt test pass
+}
+ /*   //commented out to attempt test pass
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
             System.out.println("Example Search Term with No Results");
             System.out.println("No Results");
-            return;
+
         }
 
         for (HashMap<String, String> job : someJobs) {
