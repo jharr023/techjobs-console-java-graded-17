@@ -122,9 +122,33 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
-    // Flags to track if results have been printed
+    // Print a list of job
 
+    //ver4
+    private static boolean jobsPrinted = false;
+
+    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        // Check if jobs have already been printed
+        if (!jobsPrinted) {
+            // Print jobs
+            for (HashMap<String, String> job : someJobs) {
+                System.out.println(); // Add a blank line between listings
+                System.out.println("*****");
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                System.out.println("*****");
+                //System.out.println(); // Add a blank line between listings
+            }
+            // Set the flag to true to indicate that jobs have been printed
+            jobsPrinted = true;
+        }
+    }
+}
+
+    /*
     //ver 3
     private static boolean noResultsPrinted = false;
     //private static boolean searchResultsPrinted = false;
@@ -155,13 +179,12 @@ public class TechJobs {
             //searchResultsPrinted = true; // Update flag to indicate search results have been printed
         }
     }
-}
+} */
 
 
 
-
-
-    /* ver2 commented out to test ver3
+     //ver2 commented out to test ver3
+  /*  private static boolean noResultsPrinted = false;
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty() && !noResultsPrinted) {
             System.out.println("Search term:");
@@ -184,10 +207,10 @@ public class TechJobs {
             }
         }
     }
-}*/
+} */
 
     //commented out to attempt test pass BASIC OG
-     /* private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+      /* private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("Search term:");
             //System.out.println("Example Search Term with No Results");
