@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.HashSet;
 
 /**
  * Created by LaunchCode
@@ -147,12 +146,11 @@ public class TechJobs {
             jobsPrinted = true;
         }
     }
-} //make a commit edit
+}
 
     // Print a list of job
-    /* //ver4
-    private static boolean jobsPrinted = false;
-
+     //ver4
+   /* private static boolean jobsPrinted = false;
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         // Check if jobs have already been printed
         if (!jobsPrinted) {
