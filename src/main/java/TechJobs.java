@@ -121,9 +121,13 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-//ver4.1
+
+
+    //ver4.1, closest as of 10:57AM 4/20. needs to be rerun
     private static boolean jobsPrinted = false;
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        //added flag to reset, hopefully fixes re-run issue - technically does, but now returns each result 2x?
+        //jobsPrinted = false;
         // Check if jobs have already been printed
         if (!jobsPrinted) {
             // Print jobs if there are any
@@ -146,7 +150,7 @@ public class TechJobs {
             jobsPrinted = true;
         }
     }
-} //commenm 4 com msg
+}
 
     // Print a list of job
      //ver4

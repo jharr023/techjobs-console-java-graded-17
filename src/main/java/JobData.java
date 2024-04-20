@@ -106,7 +106,8 @@ public class JobData {
 
         return matchingJobs;
     }
-    /*COMMENTED OUT TO ATTEMPT TO PASS RELEVANT TEST
+        /*
+    //COMMENTED OUT TO ATTEMPT TO PASS RELEVANT TEST
             //return null;
             ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
             ArrayList<String> addedJobs = new ArrayList<>(); // To keep track of added jobs
@@ -130,7 +131,7 @@ public class JobData {
             }
 
             return matchingJobs;
-        }*/
+        } */
     private static boolean jobContainsValue(HashMap<String, String> job, String value) {
         for (String column : job.values()) {
             if (column.toLowerCase().contains(value.toLowerCase())) {
